@@ -230,7 +230,7 @@ public class RainbowHatHelper implements Button.OnButtonEventListener {
             }
             display.display(new String(toDisplay));
         } catch (IOException e) {
-            Log.e(TAG, "Error resetting display", e);
+            Log.e(TAG, "Error displaying message", e);
         }
     }
 }

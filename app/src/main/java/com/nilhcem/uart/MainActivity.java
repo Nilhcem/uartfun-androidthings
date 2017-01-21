@@ -3,7 +3,7 @@ package com.nilhcem.uart;
 import android.app.Activity;
 import android.os.Bundle;
 
-class MainActivity extends Activity implements UARTHelper.KeyReceivedListener {
+public class MainActivity extends Activity implements UARTHelper.KeyReceivedListener {
 
     private final UARTHelper uartHelper = new UARTHelper();
     private final RainbowHatHelper rainbowhatHelper = new RainbowHatHelper();
