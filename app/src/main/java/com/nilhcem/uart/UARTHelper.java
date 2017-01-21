@@ -30,7 +30,7 @@ public class UARTHelper extends UartDeviceCallback {
     public void init(KeyReceivedListener listener) {
         this.listener = listener;
 
-        inputThread = new HandlerThread("InputThread");
+        inputThread = new HandlerThread("UARTThread");
         inputThread.start();
 
         try {
@@ -41,7 +41,7 @@ public class UARTHelper extends UartDeviceCallback {
             uartDevice.setStopBits(STOP_BITS);
             uartDevice.registerUartDeviceCallback(this, new Handler(inputThread.getLooper()));
 
-            String ready = "Ready. Have fun!\n";
+            String ready = "Ready. Have fun!\r\n";
             uartDevice.write(ready.getBytes(), ready.length());
         } catch (IOException e) {
             Log.e(TAG, "Unable to open UART device", e);
@@ -51,20 +51,14 @@ public class UARTHelper extends UartDeviceCallback {
     public void close() {
         listener = null;
 
-        if (inputThread != null) {
-            inputThread.quitSafely();
+        try {
+            uartDevice.unregisterUartDeviceCallback(this);
+            uartDevice.close();
+        } catch (IOException e) {
+            Log.e(TAG, "Error closing UART device:", e);
         }
 
-        if (uartDevice != null) {
-            try {
-                uartDevice.unregisterUartDeviceCallback(this);
-                uartDevice.close();
-            } catch (IOException e) {
-                Log.e(TAG, "Error closing UART device:", e);
-            } finally {
-                uartDevice = null;
-            }
-        }
+        inputThread.quitSafely();
     }
 
     @Override
