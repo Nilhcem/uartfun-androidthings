@@ -29,6 +29,8 @@ $ screen /dev/ttyUSB0 115200
 ```
 - Now you can start sending commands from your host keyboard
 
+Note: if you are on android things 0.2-devpreview, you should not remove the `console=serial0,115200` argument but replace it by `console=tty0,115200`
+
 
 ![photo][]
 
