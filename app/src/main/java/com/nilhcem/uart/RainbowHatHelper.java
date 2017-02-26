@@ -74,7 +74,7 @@ public class RainbowHatHelper implements Button.OnButtonEventListener {
             buzzer = RainbowHat.openPiezo();
 
             ledstrip = RainbowHat.openLedStrip();
-            ledstrip.setBrightness(8);
+            ledstrip.setBrightness(1);
             for (int i = 0; i < rainbow.length; i++) {
                 rainbow[i] = Color.HSVToColor(255, new float[]{i * 360.f / rainbow.length, 1.0f, 1.0f});
             }
