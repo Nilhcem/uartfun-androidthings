@@ -4,13 +4,13 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.util.Log;
 
-import com.google.android.things.pio.PeripheralManagerService;
+import com.google.android.things.pio.PeripheralManager;
 import com.google.android.things.pio.UartDevice;
 import com.google.android.things.pio.UartDeviceCallback;
 
 import java.io.IOException;
 
-public class UARTHelper extends UartDeviceCallback {
+public class UARTHelper implements UartDeviceCallback {
 
     private static final String TAG = UARTHelper.class.getSimpleName();
     private static final String UART_NAME = "UART0";
@@ -34,7 +34,7 @@ public class UARTHelper extends UartDeviceCallback {
         inputThread.start();
 
         try {
-            uartDevice = new PeripheralManagerService().openUartDevice(UART_NAME);
+            uartDevice = PeripheralManager.getInstance().openUartDevice(UART_NAME);
             uartDevice.setBaudrate(BAUD_RATE);
             uartDevice.setDataSize(DATA_BITS);
             uartDevice.setParity(UartDevice.PARITY_NONE);

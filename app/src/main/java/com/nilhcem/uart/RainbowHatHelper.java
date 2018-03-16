@@ -63,11 +63,14 @@ public class RainbowHatHelper implements Button.OnButtonEventListener {
             display.setEnabled(true);
             resetDisplay();
 
-            String[] ledPins = new String[]{RainbowHat.LED_RED, RainbowHat.LED_GREEN, RainbowHat.LED_BLUE};
-            String[] buttonPins = new String[]{RainbowHat.BUTTON_A, RainbowHat.BUTTON_B, RainbowHat.BUTTON_C};
+            leds[0] = RainbowHat.openLedRed();
+            leds[1] = RainbowHat.openLedGreen();
+            leds[2] = RainbowHat.openLedBlue();
+
+            buttons[0] = RainbowHat.openButtonA();
+            buttons[1] = RainbowHat.openButtonB();
+            buttons[2] = RainbowHat.openButtonC();
             for (int i = 0; i < LEDS_BUTTONS_NB; i++) {
-                leds[i] = RainbowHat.openLed(ledPins[i]);
-                buttons[i] = RainbowHat.openButton(buttonPins[i]);
                 buttons[i].setOnButtonEventListener(this);
             }
 
