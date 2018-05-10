@@ -39,7 +39,7 @@ public class UARTHelper implements UartDeviceCallback {
             uartDevice.setDataSize(DATA_BITS);
             uartDevice.setParity(UartDevice.PARITY_NONE);
             uartDevice.setStopBits(STOP_BITS);
-            uartDevice.registerUartDeviceCallback(this, new Handler(inputThread.getLooper()));
+            uartDevice.registerUartDeviceCallback(new Handler(inputThread.getLooper()), this);
 
             String ready = "Ready. Have fun!\r\n";
             uartDevice.write(ready.getBytes(), ready.length());
